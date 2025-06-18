@@ -14,7 +14,6 @@ declare global {
 		homeTown?: string;
 
 		role: "Member" | "Admin" | "Pastor";
-		// ministries: string[] | IMinistries[];
 
 		createdAt: Date;
 		updatedAt: Date;
@@ -65,6 +64,13 @@ declare global {
 
 	interface IMinistries {
 		_id?: string;
+		leader: string | IUser;
+
+		banner?: string;
+		description: string;
+		roles: string[],
+
+		members: string[] | IUser[];
 		createdAt: Date;
 		updatedAt: Date;
 	}
