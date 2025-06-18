@@ -1,4 +1,8 @@
-import { eBlogTypes } from "@/constants/enums";
+import {
+	eAnnouncementDurations,
+	eBlogCategory,
+	eBlogTypes,
+} from "@/constants/enums";
 
 export {};
 
@@ -23,12 +27,30 @@ declare global {
 
 	interface IBlog {
 		_id?: string;
+		author: string | IUser;
 		title: string;
 		body: string;
-		user: string | IUser;
+		category?: eBlogCategory;
 		type: eBlogTypes;
 
 		likes?: string[] | IUser[];
+		reads?: string[] | IUser[];
+
+		createdAt: Date;
+		updatedAt: Date;
+	}
+
+	interface IAnnouncement {
+		_id?: string;
+		user: IUser | string;
+		title: string;
+		body: string;
+		date?: Date;
+		duration?: eAnnouncementDurations;
+		userTags?: IUser[] | string[];
+
+		isHidden?: boolean;
+		isPinned?: boolean;
 
 		createdAt: Date;
 		updatedAt: Date;
@@ -41,6 +63,8 @@ declare global {
 		transcript: string[];
 		media?: string;
 		gallery?: string[];
+
+		isHidden?: boolean;
 
 		likes?: string[] | IUser[];
 
@@ -70,10 +94,20 @@ declare global {
 
 		banner?: string;
 		description: string;
-		roles: string[],
+		roles: string[];
 
 		members?: string[] | IUser[];
 		meet?: string; // ? interval when ministries meet.
+
+		createdAt: Date;
+		updatedAt: Date;
+	}
+
+	interface IApplication {
+		_id?: string;
+
+		admins: IUser[] | string[];
+		mainCarouselImgs?: string[];
 
 		createdAt: Date;
 		updatedAt: Date;

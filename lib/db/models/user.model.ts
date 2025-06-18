@@ -16,6 +16,7 @@ const userSchema = new Schema<IUser>(
 			enum: ["Member", "Admin", "Pastor"],
 			default: "Member",
 		},
+		
 	},
 	{ timestamps: true }
 );
