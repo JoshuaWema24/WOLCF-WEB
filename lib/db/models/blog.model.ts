@@ -1,3 +1,4 @@
+import { eBlogTypes } from "@/constants/enums";
 import { model, models, Schema } from "mongoose";
 
 const blogSchema = new Schema<IBlog>(
@@ -7,8 +8,8 @@ const blogSchema = new Schema<IBlog>(
 		user: { type: Schema.Types.ObjectId, ref: "User", required: true },
 		type: {
 			type: String,
-			default: "Other",
-			enum: ["News", "Announcement", "Other"],
+			default: eBlogTypes.OTHER,
+			enum: eBlogTypes,
 		},
 		likes: [{ type: Schema.Types.ObjectId, ref: "User" }],
 	},

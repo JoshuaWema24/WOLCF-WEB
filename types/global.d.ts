@@ -1,3 +1,5 @@
+import { eBlogTypes } from "@/constants/enums";
+
 export {};
 
 declare global {
@@ -24,7 +26,7 @@ declare global {
 		title: string;
 		body: string;
 		user: string | IUser;
-		type: "News" | "Announcement" | "Other";
+		type: eBlogTypes;
 
 		likes?: string[] | IUser[];
 
@@ -70,7 +72,9 @@ declare global {
 		description: string;
 		roles: string[],
 
-		members: string[] | IUser[];
+		members?: string[] | IUser[];
+		meet?: string; // ? interval when ministries meet.
+
 		createdAt: Date;
 		updatedAt: Date;
 	}
