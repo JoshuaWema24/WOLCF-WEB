@@ -5,68 +5,79 @@ import { connectDb } from "../db/db";
 import userModel from "../db/models/user.model";
 
 //create user.
-export const createUser = async (newUser: IUser, pathname: string) => {
-  try {
-    await connectDb();
+export const createUser = async (
+	newUser: IUser,
+	pathname: string
+): Promise<void> => {
+	try {
+		await connectDb();
 
-    await userModel.create(newUser);
+		await userModel.create(newUser);
 
-    revalidatePath(pathname);
-  } catch (error: any) {
-    throw new Error(error);
-  }
+		revalidatePath(pathname);
+	} catch (error: any) {
+		throw new Error(error);
+	}
 };
 
 // delete user
-export const deleteUser = async (userId: string, pathname: string) => {
-  try {
-    await connectDb();
+export const deleteUser = async (
+	userId: string,
+	pathname: string
+): Promise<void> => {
+	try {
+		await connectDb();
 
-    await userModel.findByIdAndDelete(userId);
+		await userModel.findByIdAndDelete(userId);
 
-    revalidatePath(pathname);
-  } catch (error: any) {
-    throw new Error(error);
-  }
+		revalidatePath(pathname);
+	} catch (error: any) {
+		throw new Error(error);
+	}
 };
 
 //update user
-export const updateUser = async (updatedUser: IUser, pathname: string) => {
-  try {
-    await connectDb();
+export const updateUser = async (
+	updatedUser: IUser,
+	pathname: string
+): Promise<void> => {
+	try {
+		await connectDb();
 
-    await userModel.findByIdAndUpdate(updatedUser._id, updatedUser);
+		await userModel.findByIdAndUpdate(updatedUser._id, updatedUser);
 
-    revalidatePath(pathname);
-  } catch (error: any) {
-    throw new Error(error);
-  }
+		revalidatePath(pathname);
+	} catch (error: any) {
+		throw new Error(error);
+	}
 };
 
 // get one user.
-export const getUser = async (userId?: IUser["_id"], username?: string) => {
-  try {
-    await connectDb();
+export const getUser = async (
+	userId?: IUser["_id"],
+	username?: string
+): Promise<IUser> => {
+	try {
+		await connectDb();
 
-    const user = await userModel
-      .findOne()
-      .or([{ _id: userId }, { username }])
-      .exec();
+		const user = await userModel
+			.findOne()
+			.or([{ _id: userId }, { username }])
+			.exec();
 
-   return JSON.parse(JSON.stringify(user));
-  } catch (error: any) {
-    throw new Error(error);
-  }
+		return JSON.parse(JSON.stringify(user));
+	} catch (error: any) {
+		throw new Error(error);
+	}
 };
 
 //get all users.
-export const getAllUsers = async () =>{
-   try {
-       await connectDb();
-        const users = await userModel.find().exec();
-        return JSON.parse(JSON. stringify(users));
-   } catch (error: any) {
-    throw new Error(error);
-      
-   }
-}
+export const getUsers = async (): Promise<IUser[]> => {
+	try {
+		await connectDb();
+		const users = await userModel.find().exec();
+		return JSON.parse(JSON.stringify(users));
+	} catch (error: any) {
+		throw new Error(error);
+	}
+};

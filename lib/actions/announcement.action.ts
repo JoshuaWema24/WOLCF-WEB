@@ -6,73 +6,75 @@ import announcementModel from "../db/models/announcement.model";
 
 //create announcement
 export const createAnnouncement = async (
-  newAnnouncement: IAnnouncement,
-  pathname: string
-) => {
-  try {
-    await connectDb();
+	newAnnouncement: IAnnouncement,
+	pathname: string
+): Promise<void> => {
+	try {
+		await connectDb();
 
-    await announcementModel.create(newAnnouncement);
-    revalidatePath(pathname);
-  } catch (error: any) {
-    throw new Error(error);
-  }
+		await announcementModel.create(newAnnouncement);
+		revalidatePath(pathname);
+	} catch (error: any) {
+		throw new Error(error);
+	}
 };
 
 //delete announcement
 export const deleteAnnouncement = async (
-  announcementId: string,
-  pathname: string
-) => {
-  try {
-    await connectDb();
+	announcementId: string,
+	pathname: string
+): Promise<void> => {
+	try {
+		await connectDb();
 
-    await announcementModel.findByIdAndDelete(announcementId);
-    revalidatePath(pathname);
-  } catch (error: any) {
-    throw new Error(error);
-  }
+		await announcementModel.findByIdAndDelete(announcementId);
+		revalidatePath(pathname);
+	} catch (error: any) {
+		throw new Error(error);
+	}
 };
 
 // update announcement
 export const updateAnnouncement = async (
-  updatedAnnouncement: IAnnouncement,
-  pathname: string
-) => {
-  try {
-    await connectDb();
-    await announcementModel.findByIdAndUpdate(
-      updatedAnnouncement._id,
-      updatedAnnouncement
-    );
-    revalidatePath(pathname);
-  } catch (error: any) {
-    throw new Error(error);
-  }
+	updatedAnnouncement: IAnnouncement,
+	pathname: string
+): Promise<void> => {
+	try {
+		await connectDb();
+		await announcementModel.findByIdAndUpdate(
+			updatedAnnouncement._id,
+			updatedAnnouncement
+		);
+		revalidatePath(pathname);
+	} catch (error: any) {
+		throw new Error(error);
+	}
 };
 
 // get one announcement
-export const getAnnouncement = async (announcementId: IAnnouncement["_id"]) => {
-  try {
-    await connectDb();
+export const getAnnouncement = async (
+	announcementId: IAnnouncement["_id"]
+): Promise<IAnnouncement> => {
+	try {
+		await connectDb();
 
-    const announcement = await announcementModel
-      .findById(announcementId)
-      .exec();
-    return JSON.parse(JSON.stringify(announcement));
-  } catch (error: any) {
-    throw new Error(error);
-  }
+		const announcement = await announcementModel
+			.findById(announcementId)
+			.exec();
+		return JSON.parse(JSON.stringify(announcement));
+	} catch (error: any) {
+		throw new Error(error);
+	}
 };
 
 // get all announcements
 export const getAnnouncements = async (): Promise<IAnnouncement[]> => {
-  try {
-    await connectDb();
+	try {
+		await connectDb();
 
-    const announcements = await announcementModel.find().exec();
-    return JSON.parse(JSON.stringify(announcements));
-  } catch (error: any) {
-    throw new Error(error);
-  }
+		const announcements = await announcementModel.find().exec();
+		return JSON.parse(JSON.stringify(announcements));
+	} catch (error: any) {
+		throw new Error(error);
+	}
 };
