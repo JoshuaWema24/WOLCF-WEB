@@ -10,7 +10,6 @@ declare global {
   interface IUser {
     _id?: string;
     clerkId: string;
-    username: string;
     fname: string;
     lname: string;
     imageUrl?: string;
@@ -19,10 +18,10 @@ declare global {
     bio?: string;
     homeTown?: string;
 
-    role: "Member" | "Admin" | "Pastor";
+    role?: "Member" | "Admin" | "Pastor";
 
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt?: Date;
+    updatedAt?: Date;
   }
 
   interface IBlog {
@@ -36,8 +35,8 @@ declare global {
     likes?: string[] | IUser[];
     reads?: string[] | IUser[];
 
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt?: Date;
+    updatedAt?: Date;
   }
 
   interface IAnnouncement {
@@ -52,8 +51,8 @@ declare global {
     isHidden?: boolean;
     isPinned?: boolean;
 
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt?: Date;
+    updatedAt?: Date;
   }
 
   interface ISermon {
@@ -68,8 +67,8 @@ declare global {
 
     likes?: string[] | IUser[];
 
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt?: Date;
+    updatedAt?: Date;
   }
 
   interface IComment {
@@ -84,8 +83,8 @@ declare global {
 
     isHidden?: boolean;
 
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt?: Date;
+    updatedAt?: Date;
   }
 
   interface IMinistry {
@@ -99,8 +98,8 @@ declare global {
     members?: string[] | IUser[];
     meet?: string; // ? interval when ministries meet.
 
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt?: Date;
+    updatedAt?: Date;
   }
 
   interface IApplication {
@@ -109,7 +108,7 @@ declare global {
     admins: IUser[] | string[];
     mainCarouselImgs?: string[];
 
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt?: Date;
+    updatedAt?: Date;
   }
 }

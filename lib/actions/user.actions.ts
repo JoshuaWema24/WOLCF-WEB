@@ -53,17 +53,11 @@ export const updateUser = async (
 };
 
 // get one user.
-export const getUser = async (
-	userId?: IUser["_id"],
-	username?: string
-): Promise<IUser> => {
+export const getUser = async (userId: IUser["_id"]): Promise<IUser> => {
 	try {
 		await connectDb();
 
-		const user = await userModel
-			.findOne()
-			.or([{ _id: userId }, { username }])
-			.exec();
+		const user = await userModel.findById(userId).exec();
 
 		return JSON.parse(JSON.stringify(user));
 	} catch (error: any) {
