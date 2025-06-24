@@ -8,14 +8,14 @@ const blogSchema = new Schema<IBlog>(
 		author: { type: Schema.Types.ObjectId, ref: "User", required: true },
 		category: {
 			type: String,
-			default: eBlogCategory.OTHER,
 			enum: eBlogCategory,
+			default: eBlogCategory.OTHER,
 		},
 		type: {
 			type: String,
 			enum: eBlogTypes,
 		},
-		
+
 		likes: [{ type: Schema.Types.ObjectId, ref: "User" }],
 		reads: [{ type: Schema.Types.ObjectId, ref: "User" }],
 	},

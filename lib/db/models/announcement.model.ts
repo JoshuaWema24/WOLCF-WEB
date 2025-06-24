@@ -29,11 +29,11 @@ const announcementSchema = new Schema<IAnnouncement>(
 		],
 
 		isHidden: {
-			types: Boolean,
+			type: Boolean,
 			default: false,
 		},
 		isPinned: {
-			types: Boolean,
+			type: Boolean,
 			default: false,
 		},
 		date: Date,
